@@ -1,0 +1,373 @@
+body {
+    background-color:#181818 ;
+    color: #f5f5f5;
+}
+body.light{
+    background-color:#f5f5f5;
+    color: #181818;
+}
+
+
+
+.component {
+
+    width: 100%;
+    height: 80px;
+    margin: 0 auto;
+    padding: 1em 1.5em;
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.8);
+
+}
+.component.light{
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    background-color: white;
+    box-shadow: white;
+}
+
+.playButton, .stopButton, .prevButton, .nextButton {
+    padding: 6px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 15px;
+    background: black; /* shorthand для фона: цвет */
+    border: 1px solid black; /* конкретизируем границу: цвет и толщина */
+    color: black;
+    box-shadow: none;
+}
+
+.playButton.light, .stopButton.light, .prevButton.light, .nextButton.light {
+    background: white;      /* Устанавливаем белый фон */
+    border: 1px solid white; /* Устанавливаем белую границу с толщиной 1px */
+    color: white;            /* Устанавливаем белый цвет текста */
+}
+
+.playButton:focus, .playButton:active,.stopButton:focus,.stopButton:active,.prevButton:focus,.prevButton:active,.nextButton:focus,.nextButton:active{
+    background-color: inherit; /* Возвращаем цвет к исходному */
+    box-shadow: none; /* Убираем тень */
+}
+
+
+
+
+.bob{
+    position: fixed; /* Закрепляем таймлайн относительно окна */
+    bottom: 40px; /* Устанавливаем таймлайн чуть выше нижней границы экрана */
+    left: 0;
+    width: 100vw; /* Задаем ширину в 100% от ширины экрана */
+    height: 10px;
+    transition: ease;/* Толщина таймлайна */
+         /* Устанавливаем z-index для отображения поверх других элементов */
+}
+
+/* Updated Timeline */
+.timeline {
+    position: fixed; /* Закрепляем таймлайн относительно окна */
+    bottom: 50px; /* Устанавливаем таймлайн чуть выше нижней границы экрана */
+    left: 0;
+    width: 100vw; /* Задаем ширину в 100% от ширины экрана */
+    height: 6px; /* Толщина таймлайна */
+    background-color: #27ae60;
+    border-radius: 5px 5px 0 0; /* Скругляем верхние углы */
+    z-index: 1100;
+    transition-timing-function: linear/* Устанавливаем z-index для отображения поверх других элементов */
+}
+
+input[type="range"] {
+    width: 100%; /* Ширина ползунка */
+    background-color: transparent;
+    appearance: none;
+    height: 6px; /* Толщина ползунка */
+    cursor: pointer;
+}
+
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100vw;
+    height: 6px; /* Совпадает с толщиной таймлайна */
+    background: white;
+    border-radius: 5px;
+    border: none;
+}
+input[type="range"]::-webkit-slider-runnable-track.light{
+    background: black;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px; /* Центрирование ползунка */
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100vw;
+    height: 6px; /* Совпадает с толщиной таймлайна */
+    background: white;
+    border-radius: 5px;
+    border: none;
+    transition: width .1s linear;
+}
+
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    left:50%;
+    position: absolute;
+}
+.volume-container.light{
+    color:black
+}
+.volume-control {
+    color: white;
+    position: relative;
+    left: 40%;
+}
+
+.volume-control * {
+    color: white;
+}
+
+.volume-control.light,.volume-control.light *{
+    color:black
+}
+
+.volume-container input[type="range"] {
+    width: 1200px;
+    margin-left: 15px;
+    color: black;
+}
+
+@media (max-width: 900px) {
+    .component {
+        height: 100px;
+        padding: 0.5em 1em;
+    }
+    .playButton, .stopButton, .prevButton, .nextButton {
+        padding: 8px 15px;
+        margin: 0 8px;
+    }
+    .musicCover {
+        width: 60px;
+        height: 40px;
+    }
+    .time {
+        font-size: 0.85rem;
+    }
+    .titl {
+        font-size: 1.2rem;
+    }
+    .volume-container input[type="range"] {
+        width: 100px;
+    }
+    .authorName{
+
+    }
+
+}
+
+.progress-bar {
+    position: fixed; /* Закрепляем таймлайн относительно окна */
+    bottom: -70px; /* Устанавливаем таймлайн чуть выше нижней границы экрана */
+    left: -20px;
+    z-index: 1100;
+    transition-timing-function: linear;
+    margin: 20px 20px 150px;
+    height: 1%; /* Высота прогресс-бара */
+    background-color: #09fa6e; /* Зеленый цвет для прогресса */
+    width: 1%; /* Начальная ширина прогресс-бара */
+}
+
+.progress-bar-backend {
+    position: fixed; /* Закрепляем таймлайн относительно окна */
+    bottom: -70px; /* Устанавливаем таймлайн чуть выше нижней границы экрана */
+    left: -20px;
+    z-index: 1100;
+
+    margin: 20px 20px 150px;
+    height: 1%; /* Высота прогресс-бара */
+    background-color: rgba(60, 70, 70, 0.3);
+    width: 100%; /* Начальная ширина прогресс-бара */
+}
+.sound.png {
+    position: fixed; /* фиксируем положение кнопки */
+    top: -10px;       /* расположение сверху */
+    left: 10px;      /* расположение слева */
+    z-index: 1001;   /* чтобы кнопка была выше других элементов */
+    width: 100px;
+    height: 100px;
+    background-image: url('https://w7.pngwing.com/pngs/662/751/png-transparent-volume-icon-volume-computer-icons-sound-icon-volume-miscellaneous-text-hand-thumbnail.png');
+    background-size: contain; /* Изображение будет полностью помещаться в кнопку */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Предотвращаем повторение изображения */
+}
+
+
+@keyframes fave-heart {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -2800px 0;
+    }
+}
+
+/* Анимация для скелетона */
+@keyframes skeleton-loading {
+    0% {
+        background-color: #e0e0e0;
+    }
+    100% {
+        background-color: #c0c0c0;
+    }
+}
+
+/* Скелетон для изображения */
+
+.audioContainer{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left:7%;
+    bottom:-10%;/* Располагает элементы по вертикали */
+}
+
+.titl {
+    font-size: 1rem;
+    color: #f5f5f5;
+    position: relative;
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+    left:2%;
+}
+
+.titl.light {
+    color: black;
+}
+
+.authorName {
+    position: relative;
+    left: 2%;
+    font-size: 1.1rem; /* Чуть больше, чем titl */
+    color: darkgrey;
+    letter-spacing: 0.5px;
+    margin-top: 3px; /*  /* Смещаем authorName вправо на 10% */
+}
+
+/* Для светлой темы */
+.authorName.light {
+    color: black;
+}
+.container-attributes {
+    position: absolute;
+    bottom: 10px;
+    left: 4%;
+    display: flex;
+    flex-direction: row;  /* Указываем направление строки явно */
+    gap: 10px;
+    align-items: center;
+    width: 40%;
+    height: 100px;
+}
+.scattering {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-left: 40%;
+    bottom: -70%;
+    transform: translate(-50%, -50%);
+    background: url(https://zornet.ru/ABVUN/Aba/detunis/supasnab/heart.png) no-repeat 0 0;
+    cursor: pointer;
+    animation: fave-heart 1s steps(28);
+}
+.scattering.active {
+    background-position: -2800px 0;
+    transition: background 1s steps(28);
+}
+
+
+.musicCover {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    left: -8%;
+    bottom: -20%;
+    border: 2px solid #27ae60;
+    border-radius: 8px;
+    position: relative;
+}
+.skeleton-image {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    color: #181818; /* Цвет до загрузки */
+    border: 2px solid #27ae60;
+    left: -8%;
+    bottom: -20%;
+    border-radius: 8px;
+    animation: skeleton-loading 1.5s infinite alternate;
+    position: relative;
+}
+
+/* Скелетон для текста */
+.skeleton-title {
+    width: 80%;
+    height: 20px;
+    color: #181818; /* Цвет до загрузки */
+    animation: skeleton-loading 1.5s infinite alternate;
+    border-radius: 4px;
+    white-space: nowrap; /* Текст будет в одну строку */
+    overflow: hidden; /* Скрываем лишний текст */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    max-width: 200px; /* Ограничиваем максимальную ширину надписи */
+    margin-bottom: 2px;
+    left:2%;
+}
+.timeTotal{
+    position: absolute;
+    bottom: 55px;
+    right: 0.5%;
+    z-index: 1202;
+    color: lightslategray;
+    pointer-events: none
+}
+.time {
+    margin: 0 15px;
+    left: -0.5%;
+    display: flex;
+    justify-content: flex-end;
+    color: lightslategray;
+    font-size: 0.95rem;
+    position: fixed;
+    bottom: 55px;
+    z-index: 1200;
+    pointer-events: none
+
+}
+.time.light{
+    color:peru;
+}
